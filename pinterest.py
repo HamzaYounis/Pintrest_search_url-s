@@ -11,7 +11,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 ## Email and Password
-with open(r'D:\Hamza\freelance\pinterest-web-scraper\Credentials\email&pass.txt','r',encoding='latin') as infile:
+## Enter credentials path here
+with open(r'\email&pass.txt','r',encoding='latin') as infile:
     for row in infile:
         email=row.split(',')[0]
         password=row.split(',')[1].replace('\n','')
@@ -43,16 +44,6 @@ else:
 
 csv_name = csv_name.replace(" ", "_")
 
-
-# if args.login_name:
-# 	login_name = args.login_name
-# else:
-# 	login_name = str(input('Enter your pinterest email id: '))
-
-# if args.CSVname:
-# 	login_pass = args.login_pass
-# else:
-# 	login_pass = str(input('Enter the pinterest password: '))
 
 # Initialize and launch the chrome driver
 driver  = webdriver.Chrome(ChromeDriverManager().install())
@@ -92,7 +83,6 @@ time.sleep(3)
 url = 'https://in.pinterest.com/search/pins/?q=' + item_category.replace(" ", "%20")
 
 # wait and get the query page
-# driver.implicitly_wait(30)
 driver.get(url)
 time.sleep(3)
 
@@ -124,7 +114,6 @@ while 1:
 
 
 # get links for individual pages of all the Pins
-# hrefs = []
 for i in range(len(all_pin_data)):
     try:
         with open(item_category+'.csv','a',encoding='latin') as out:
@@ -135,6 +124,3 @@ for i in range(len(all_pin_data)):
         pass
 driver.close()
 
-# save to CSV
-# df = pd.DataFrame({'PID_URLS': hrefs[:50]})
-# df.to_csv(csv_name, index=False)
